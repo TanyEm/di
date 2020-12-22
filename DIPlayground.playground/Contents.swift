@@ -8,26 +8,6 @@ protocol DataManager {
     func getTasks()
 }
 
-class GuestTaskManager: DataManager {
-//    var items = [GuestTaskListItem]
-    
-    func setTask() {
-        print("setting data of task as guest")
-    }
-    
-    func getTask() {
-        print("getting data of task for guest")
-    }
-    
-    func removeTask() {
-        print("removing data of task as a guest")
-    }
-    
-    func getTasks() {
-        print("getting data of tasks for guest")
-    }
-}
-
 class PrivateTaskManager: DataManager {
     //    var items = [PrivateTaskManager]
     
@@ -45,6 +25,14 @@ class PrivateTaskManager: DataManager {
     
     func getTasks() {
         print("getting data of tasks for owner")
+    }
+}
+
+class GuestTaskManager: PrivateTaskManager {
+//    var items = [GuestTaskListItem]
+        
+    override func getTasks() {
+        print("getting data of tasks for guest")
     }
 }
 
@@ -78,10 +66,8 @@ class GuestViewController:UIViewController {
 
 let vc1DataManager = PrivateTaskManager()
 let vc1 = ViewController(dataManager: vc1DataManager)
-vc1.dataManager.getTask()
+vc1.dataManager.getTasks()
 
 let vc2DataManager = GuestTaskManager()
 let vc2 = ViewController(dataManager: vc2DataManager)
-vc2.dataManager.getTask()
-
-
+vc2.dataManager.getTasks()
